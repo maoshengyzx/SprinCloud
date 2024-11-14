@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ms.edu.course.mapper.CourseMapper">
+
+    <resultMap id="BaseResultMap" type="com.ms.edu.entity.Course">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="courseName" column="course_name" jdbcType="VARCHAR"/>
+        <result property="brief" column="brief" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="DOUBLE"/>
+        <result property="priceTag" column="price_tag" jdbcType="VARCHAR"/>
+        <result property="discounts" column="discounts" jdbcType="DOUBLE"/>
+        <result property="discountsTag" column="discounts_tag" jdbcType="VARCHAR"/>
+        <result property="courseDescriptionMarkDown" column="course_description_mark_down" jdbcType="VARCHAR"/>
+        <result property="courseDescription" column="course_description" jdbcType="VARCHAR"/>
+        <result property="courseImgUrl" column="course_img_url" jdbcType="VARCHAR"/>
+        <result property="isNew" column="is_new" jdbcType="TINYINT"/>
+        <result property="isNewDes" column="is_new_des" jdbcType="VARCHAR"/>
+        <result property="lastOperatorId" column="last_operator_id" jdbcType="INTEGER"/>
+        <result property="autoOnlineTime" column="auto_online_time" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isDel" column="is_del" jdbcType="TINYINT"/>
+        <result property="totalDuration" column="total_duration" jdbcType="INTEGER"/>
+        <result property="courseListImg" column="course_list_img" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="sortNum" column="sort_num" jdbcType="INTEGER"/>
+        <result property="previewFirstField" column="preview_first_field" jdbcType="VARCHAR"/>
+        <result property="previewSecondField" column="preview_second_field" jdbcType="VARCHAR"/>
+        <result property="sales" column="sales" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="CourseDTO" type="com.ms.edu.dto.CourseDTO" autoMapping="true">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="teacherId" column="teacherId" jdbcType="INTEGER"/>
+        <result property="teacherName" column="teacherName" jdbcType="VARCHAR"/>
+        <result property="position" column="position" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <resultMap id="CourseSectionDTO" type="com.ms.edu.dto.CourseSectionDTO" autoMapping="true">
+        <id property="id" column="sectionId" jdbcType="INTEGER"/>
+        <collection property="courseLessonList" ofType="com.ms.edu.dto.CourseLessonDTO" autoMapping="true">
+            <id property="id" column="lessonId"/>
+            <association property="courseMedia" javaType="com.ms.edu.entity.CourseMedia" autoMapping="true">
+                <id property="mediaId" column="mediaId"/>
+            </association>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,course_name,brief,
+        price,price_tag,discounts,
+        discounts_tag,course_description_mark_down,course_description,
+        course_img_url,is_new,is_new_des,
+        last_operator_id,auto_online_time,create_time,
+        update_time,is_del,total_duration,
+        course_list_img,status,sort_num,
+        preview_first_field,preview_second_field,sales
+    </sql>
+    <update id="updateCourseBuyNum">
+        UPDATE course
+        SET sales = sales + 1
+        WHERE id = #{courseId}
+    </update>
+    <select id="selectCourse" resultMap="CourseDTO">
+        SELECT co.id           As _id,
+               co.id              id,
+               co.price,
+               co.sales,
+               co.discounts,
+               co.course_img_url  courseImgUrl,
+               co.course_name     courseName,
+               co.brief,
+               co.course_description,
+               te.id           AS teacherId,
+               te.teacher_name AS teacherName,
+               te.position,
+               te.description
+        FROM course co
+                 JOIN teacher te
+                      ON co.id = te.course_id
+    </select>
+    <select id="selectCourseSectionByCourseId" resultMap="CourseSectionDTO">
+        SELECT co.id courseId, cos.id sectionId, cos.section_name, com.media_id mediaId, col.theme, col.id lessonId
+        FROM course_section cos
+                 RIGHT JOIN course co
+                            ON cos.course_id = co.id
+                 LEFT JOIN course_lesson col
+                           ON cos.id = col.section_id
+                 LEFT JOIN course_media com
+                           ON col.id = com.lesson_id
+        WHERE co.id = #{courseId}
+    </select>
+    <select id="selectCourseMediaByCourseIdAndLessonId" resultMap="CourseSectionDTO">
+        SELECT co.id           courseId,
+               cos.id          sectionId,
+               cos.section_name,
+               com.media_id          mediaId,
+               com.media_duration,
+               com.file_edk,
+               col.theme,
+               col.id          lessonId
+        FROM course_section cos
+                 RIGHT JOIN course co
+                            ON cos.course_id = co.id
+                 LEFT JOIN course_lesson col
+                           ON cos.id = col.section_id
+                 LEFT JOIN course_media com
+                           ON col.id = com.lesson_id
+        WHERE co.id = #{courseId}
+    </select>
+    <select id="getMyCoursesByIds" resultMap="CourseDTO">
+        SELECT co.id As _id,
+        co.id id,
+        co.price,
+        co.sales,
+        co.discounts,
+        co.course_img_url courseImgUrl,
+        co.course_name courseName,
+        co.brief,
+        co.course_description,
+        te.id AS teacherId,
+        te.teacher_name AS teacherName,
+        te.position,
+        te.description
+        FROM course co
+        JOIN teacher te
+        ON co.id = te.course_id
+        <where>
+            co.id in
+            <foreach collection="courseValues" item="value" separator="," close=")" open="(">
+                #{value}
+            </foreach>
+        </where>
+    </select>
+</mapper>

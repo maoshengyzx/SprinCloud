@@ -1,0 +1,26 @@
+server:
+  port: 9003
+Spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/edu_user?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: root
+  application:
+    name: edu-user
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: e27399bc-ebef-47e0-802f-cfc6ff0040cb
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: e27399bc-ebef-47e0-802f-cfc6ff0040cb
+        group: DEFAULT_GROUP
+        file-extension: yaml
+  feign:
+    httpclient:
+      enabled: true
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="SCA-demo-order" />
+        <module name="SCA-demo-common" />
+        <module name="SCA-demo-gateway" />
+        <module name="SCA-demo-product" />
+        <module name="SCA-demo-product-2" />
+        <module name="SCA-demo-category" />
+        <module name="SCA-demo-page" />
+        <module name="SCA-demo-user" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="blb-his-api" target="1.8" />
+      <module name="blb-his-doctor" target="1.8" />
+      <module name="blb-his-page" target="1.8" />
+      <module name="blb-his-pharmacy" target="1.8" />
+      <module name="blb-his-technology" target="1.8" />
+      <module name="blb-hsi-common" target="1.8" />
+      <module name="his" target="1.8" />
+      <module name="ruoyi" target="1.8" />
+      <module name="ruoyi-api" target="1.8" />
+      <module name="ruoyi-api-system" target="1.8" />
+      <module name="ruoyi-auth" target="1.8" />
+      <module name="ruoyi-common" target="1.8" />
+      <module name="ruoyi-common-core" target="1.8" />
+      <module name="ruoyi-common-datascope" target="1.8" />
+      <module name="ruoyi-common-datasource" target="1.8" />
+      <module name="ruoyi-common-log" target="1.8" />
+      <module name="ruoyi-common-redis" target="1.8" />
+      <module name="ruoyi-common-seata" target="1.8" />
+      <module name="ruoyi-common-security" target="1.8" />
+      <module name="ruoyi-common-sensitive" target="1.8" />
+      <module name="ruoyi-common-swagger" target="1.8" />
+      <module name="ruoyi-gateway" target="1.8" />
+      <module name="ruoyi-modules" target="1.8" />
+      <module name="ruoyi-modules-file" target="1.8" />
+      <module name="ruoyi-modules-gen" target="1.8" />
+      <module name="ruoyi-modules-job" target="1.8" />
+      <module name="ruoyi-modules-system" target="1.8" />
+      <module name="ruoyi-visual" target="1.8" />
+      <module name="ruoyi-visual-monitor" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SCA-demo-category" options="-parameters" />
+      <module name="SCA-demo-common" options="-parameters" />
+      <module name="SCA-demo-gateway" options="-parameters" />
+      <module name="SCA-demo-order" options="-parameters" />
+      <module name="SCA-demo-page" options="-parameters" />
+      <module name="SCA-demo-product" options="-parameters" />
+      <module name="SCA-demo-product-2" options="-parameters" />
+      <module name="SCA-demo-user" options="-parameters" />
+      <module name="blb-his-api" options="-parameters" />
+      <module name="blb-his-doctor" options="-parameters" />
+      <module name="blb-his-page" options="-parameters" />
+      <module name="blb-his-pharmacy" options="-parameters" />
+      <module name="blb-his-technology" options="-parameters" />
+      <module name="blb-hsi-common" options="-parameters" />
+    </option>
+  </component>
+</project>

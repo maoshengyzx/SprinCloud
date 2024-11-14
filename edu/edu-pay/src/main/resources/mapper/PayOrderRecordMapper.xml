@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ms.edu.pay.mapper.PayOrderRecordMapper">
+
+    <resultMap id="BaseResultMap" type="com.ms.edu.entity.PayOrderRecord">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
+            <result property="fromStatus" column="from_status" jdbcType="VARCHAR"/>
+            <result property="toStatus" column="to_status" jdbcType="VARCHAR"/>
+            <result property="paidAmount" column="paid_amount" jdbcType="INTEGER"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+            <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_no,type,
+        from_status,to_status,paid_amount,
+        remark,created_by,created_at
+    </sql>
+</mapper>

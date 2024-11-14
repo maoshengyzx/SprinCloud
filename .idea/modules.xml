@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SCA-demo/SCA-demo-category/SCA-demo-category.iml" filepath="$PROJECT_DIR$/SCA-demo/SCA-demo-category/SCA-demo-category.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SCA-demo/SCA-demo-common/SCA-demo-common.iml" filepath="$PROJECT_DIR$/SCA-demo/SCA-demo-common/SCA-demo-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SCA-demo/SCA-demo-order/SCA-demo-order.iml" filepath="$PROJECT_DIR$/SCA-demo/SCA-demo-order/SCA-demo-order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SCA-demo/SCA-demo-page/SCA-demo-page.iml" filepath="$PROJECT_DIR$/SCA-demo/SCA-demo-page/SCA-demo-page.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SCA-demo/SCA-demo-product/SCA-demo-product.iml" filepath="$PROJECT_DIR$/SCA-demo/SCA-demo-product/SCA-demo-product.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SCA-demo/SCA-demo-user/SCA-demo-user.iml" filepath="$PROJECT_DIR$/SCA-demo/SCA-demo-user/SCA-demo-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SpringCloud.iml" filepath="$PROJECT_DIR$/.idea/SpringCloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/his/blb-his-api/blb-his-api.iml" filepath="$PROJECT_DIR$/his/blb-his-api/blb-his-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/his/blb-his-doctor/blb-his-doctor.iml" filepath="$PROJECT_DIR$/his/blb-his-doctor/blb-his-doctor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/his/blb-his-page/blb-his-page.iml" filepath="$PROJECT_DIR$/his/blb-his-page/blb-his-page.iml" />
+      <module fileurl="file://$PROJECT_DIR$/his/blb-his-pharmacy/blb-his-pharmacy.iml" filepath="$PROJECT_DIR$/his/blb-his-pharmacy/blb-his-pharmacy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/his/blb-his-technology/blb-his-technology.iml" filepath="$PROJECT_DIR$/his/blb-his-technology/blb-his-technology.iml" />
+      <module fileurl="file://$PROJECT_DIR$/his/blb-hsi-common/blb-hsi-common.iml" filepath="$PROJECT_DIR$/his/blb-hsi-common/blb-hsi-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/his/his.iml" filepath="$PROJECT_DIR$/his/his.iml" />
+    </modules>
+  </component>
+</project>

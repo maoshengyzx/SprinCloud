@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ms.edu.pay.mapper.PayOrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.ms.edu.entity.PayOrder">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="productId" column="product_id" jdbcType="INTEGER"/>
+            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+            <result property="amount" column="amount" jdbcType="DECIMAL"/>
+            <result property="count" column="count" jdbcType="INTEGER"/>
+            <result property="currency" column="currency" jdbcType="VARCHAR"/>
+            <result property="channel" column="channel" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="channelStatus" column="channel_status" jdbcType="TINYINT"/>
+            <result property="orderType" column="order_type" jdbcType="TINYINT"/>
+            <result property="source" column="source" jdbcType="TINYINT"/>
+            <result property="clientIp" column="client_ip" jdbcType="VARCHAR"/>
+            <result property="buyId" column="buy_id" jdbcType="VARCHAR"/>
+            <result property="outTradeNo" column="out_trade_no" jdbcType="VARCHAR"/>
+            <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+            <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
+            <result property="payTime" column="pay_time" jdbcType="TIMESTAMP"/>
+            <result property="extra" column="extra" jdbcType="VARCHAR"/>
+            <result property="goodsOrderNo" column="goods_order_no" jdbcType="VARCHAR"/>
+            <result property="platform" column="platform" jdbcType="INTEGER"/>
+            <result property="wxType" column="wx_type" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_no,user_id,
+        product_id,product_name,amount,
+        count,currency,channel,
+        status,channel_status,order_type,
+        source,client_ip,buy_id,
+        out_trade_no,created_time,updated_time,
+        pay_time,extra,goods_order_no,
+        platform,wx_type
+    </sql>
+    <delete id="deleteByOrderNo">
+        delete
+        from pay_order
+        where order_no = #{orderNo}
+    </delete>
+</mapper>

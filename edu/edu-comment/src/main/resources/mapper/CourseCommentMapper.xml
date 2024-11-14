@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ms.edu.comment.mapper.CourseCommentMapper">
+
+    <resultMap id="BaseResultMap" type="com.ms.edu.entity.CourseComment">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="courseId" column="course_id" jdbcType="INTEGER"/>
+        <result property="sectionId" column="section_id" jdbcType="INTEGER"/>
+        <result property="lessonId" column="lesson_id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+        <result property="isTop" column="is_top" jdbcType="TINYINT"/>
+        <result property="comment" column="comment" jdbcType="VARCHAR"/>
+        <result property="likeCount" column="like_count" jdbcType="INTEGER"/>
+        <result property="isReply" column="is_reply" jdbcType="TINYINT"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isDel" column="is_del" jdbcType="TINYINT"/>
+        <result property="lastOperator" column="last_operator" jdbcType="INTEGER"/>
+        <result property="isNotify" column="is_notify" jdbcType="TINYINT"/>
+        <result property="markBelong" column="mark_belong" jdbcType="TINYINT"/>
+        <result property="replied" column="replied" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <resultMap id="CourseCommentDTO" type="com.ms.edu.dto.CourseCommentDTO" autoMapping="true">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <collection property="favoriteRecord" ofType="com.ms.edu.entity.CourseCommentFavoriteRecord" autoMapping="true">
+            <id property="id" column="favoriteRecordId" jdbcType="INTEGER"/>
+            <result property="userId" column="favoriteRecordUserId"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,course_id,section_id,
+        lesson_id,user_id,user_name,
+        parent_id,is_top,comment,
+        like_count,is_reply,type,
+        status,create_time,update_time,
+        is_del,last_operator,is_notify,
+        mark_belong,replied
+    </sql>
+    <select id="getCourseComment" resultMap="CourseCommentDTO">
+        SELECT coc.id,
+               coc.user_name,
+               coc.user_id,
+               coc.like_count,
+               coc.comment,
+               ccfr.user_id AS favoriteRecordUserId,
+               ccfr.id      AS favoriteRecordId,
+               ccfr.is_del,
+               ccfr.comment_id
+        FROM (SELECT *
+              FROM course_comment
+              WHERE course_id = #{courseId}
+                AND is_del = 0) AS coc
+                 LEFT JOIN course_comment_favorite_record ccfr ON coc.id = ccfr.comment_id
+        ORDER BY coc.like_count DESC, coc.create_time DESC
+
+    </select>
+</mapper>
